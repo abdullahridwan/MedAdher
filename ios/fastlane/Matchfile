@@ -1,5 +1,5 @@
-git_url("https://github.com/yourusername/your-certificates-repo.git")
+git_url("https://github.com/your/app-certificates-and-profiles.git")
 storage_mode("git")
-type("development") # Change to "appstore" for distribution certificates
-app_identifier(["your.app.bundle.identifier"])
-username("your@apple.developer.account.email") 
+type("appstore") # The default type, can be: appstore, adhoc, enterprise or development
+
+app_identifier([ENV["APP_BUNDLE_ID"]])
