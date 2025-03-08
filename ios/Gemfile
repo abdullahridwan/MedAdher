@@ -1,0 +1,51 @@
+source "https://rubygems.org"
+
+gem "fastlane"
+
+default_platform(:ios)
+
+platform :ios do
+  desc "Build and upload to TestFlight"
+  lane :beta do
+    # Ensure certificates and provisioning profiles are up-to-date
+    match(type: "appstore")
+    
+    # Build the Flutter app
+    sh("cd .. && cd .. && flutter build ios --release --no-codesign")
+    
+    # Build the iOS app
+    build_app(
+      workspace: "Runner.xcworkspace",
+      scheme: "Runner",
+      export_method: "app-store"
+    )
+    
+    # Upload to TestFlight
+    upload_to_testflight(
+      skip_waiting_for_build_processing: true
+    )
+  end
+
+  desc "Build and upload to App Store"
+  lane :release do
+    # Ensure certificates and provisioning profiles are up-to-date
+    match(type: "appstore")
+    
+    # Build the Flutter app
+    sh("cd .. && cd .. && flutter build ios --release --no-codesign")
+    
+    # Build the iOS app
+    build_app(
+      workspace: "Runner.xcworkspace",
+      scheme: "Runner",
+      export_method: "app-store"
+    )
+    
+    # Upload to App Store
+    upload_to_app_store(
+      force: true,
+      skip_screenshots: true,
+      skip_metadata: true
+    )
+  end
+end
