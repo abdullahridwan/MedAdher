@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.medadherence"
+    namespace = "com.abdullahridwan.medtrack"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
 
@@ -21,7 +21,7 @@ android {
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId = "com.example.medadherence"
+        applicationId = "com.abdullahridwan.medtrack"
         // You can update the following values to match your application needs.
         // For more information, see: https://flutter.dev/to/review-gradle-config.
         minSdk = flutter.minSdkVersion
